@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
 
 const Context = createContext()
 
@@ -12,9 +11,33 @@ export const StateContext = ({children}) => {
     //for user modal from navbar
     const [showUser, setShowUser] = useState(false)
 
-    const bodyScrollLock = (bool) => {
-        bool ? disableBodyScroll(document.querySelector('body')) : enableBodyScroll(document.querySelector('body'))
+
+    //orders, cart and stripe
+    const [qty, setQty] = useState(1)
+
+    const [cartItems, setCartItems] = useState([])
+
+
+    const addItemsToCart = (product, qty) => {
+        let productExists = cartItems.find(item=>item._id === product._id)
+        if(productExists){
+            let updatedCart = cartItems.map(item=>{
+                if(item._id === product._id){
+                    return {
+                        ...item,
+                        quantity: item.quantity + qty
+                    }
+                }else{
+                    return item
+                }
+            })
+            setCartItems(updatedCart)
+        }else{
+
+            setCartItems([...cartItems, {...product, quantity:qty}])
+        }
     }
+
 
     return  <Context.Provider value={
         {
@@ -24,7 +47,11 @@ export const StateContext = ({children}) => {
             setHamburgerToggle,
             setShowCart,
             setShowUser,
-            bodyScrollLock,
+            qty,
+            setQty,
+            cartItems,
+            setCartItems,
+            addItemsToCart,
         }
     }>
         {children}

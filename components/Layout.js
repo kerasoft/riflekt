@@ -25,7 +25,7 @@ export const Layout = ({children}) => {
         <Toaster />
         <Cart />
         <UserContainer />
-        <div className="w-full h-16 lg:h-32 grid grid-cols-4 items-center bg-[#f7f9f7]">
+        <div className="w-full h-16 lg:h-32 grid grid-cols-4 items-center bg-gray-100">
             <Link href={'/'}>
                 <h2 className='col-span-3 text-3xl lg:text-5xl flex-1 ml-8 font-bold text-gray-600 cursor-pointer'>r<span className='text-yellow-400'>ι</span>flεkt</h2>
             </Link>
@@ -35,7 +35,7 @@ export const Layout = ({children}) => {
                 </Link> */}
             </div>
         </div >
-            <div ref={wrapperRef} className='top-0 z-[5] text-[.95rem] px-6 md:px-12 sticky shadow-sm bg-[#f7f9f7]'>
+            <div ref={wrapperRef} className='top-0 z-[5] text-[.95rem] px-6 md:px-12 sticky shadow-sm bg-gray-100'>
                     <div className='h-16 flex items-center font-medium justify-between'>
                         <div className='gap-6 hidden md:flex md:flex-row tracking-wide text-black'>
                             <Link href={'/shop'} >SHOP</Link>
