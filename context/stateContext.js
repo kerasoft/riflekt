@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
 
 const Context = createContext()
 
@@ -11,6 +12,10 @@ export const StateContext = ({children}) => {
     //for user modal from navbar
     const [showUser, setShowUser] = useState(false)
 
+    const bodyScrollLock = (bool) => {
+        bool ? disableBodyScroll(document.querySelector('body')) : enableBodyScroll(document.querySelector('body'))
+    }
+
     return  <Context.Provider value={
         {
             hamburgerToggle,
@@ -19,6 +24,7 @@ export const StateContext = ({children}) => {
             setHamburgerToggle,
             setShowCart,
             setShowUser,
+            bodyScrollLock,
         }
     }>
         {children}
