@@ -17,7 +17,8 @@ export const Cart = () => {
       totalQty, 
       setTotalQty, 
       totalPrice, 
-      setTotalPrice } = useContext(Context)
+      setTotalPrice 
+    } = useContext(Context)
 
     useClickOutside(wrapperRef, setShowCart)
 

@@ -21,6 +21,12 @@ export const StateContext = ({children}) => {
     const [totalQty, setTotalQty] = useState(0)
 
     const [totalPrice, setTotalPrice] = useState(0)
+    
+
+    //wish list
+    const [wishList, setWishList] = useState([])
+    
+    const [showWishList, setShowWishList] = useState(false)
 
 
     const addItemsToCart = (product, qty, nextImage) => {
@@ -70,6 +76,10 @@ export const StateContext = ({children}) => {
             setTotalQty,
             totalPrice,
             setTotalPrice,
+            wishList,
+            setWishList,
+            showWishList,
+            setShowWishList,
         }
     }>
         {children}

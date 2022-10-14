@@ -5,10 +5,21 @@ import { BsChevronCompactDown } from 'react-icons/bs'
 import Context from '../context/stateContext'
 import { AuthContext } from '../context/authContext'
 import useClickOutside from '../hooks/useClickOutside'
-import { Cart, UserContainer } from '../components'
+import { Cart, UserContainer, WishList } from '../components'
 
 export const Layout = ({children}) => {
-    const { hamburgerToggle, setHamburgerToggle, setShowCart, setShowUser, showUser, showCart, totalQty } = useContext(Context)
+    const { 
+        hamburgerToggle, 
+        setHamburgerToggle, 
+        setShowCart, 
+        setShowUser, 
+        showUser, 
+        showCart, 
+        totalQty, 
+        setShowWishList, 
+        showWishList,
+        wishList, 
+    } = useContext(Context)
     const { currentUser, setProfile } = useContext(AuthContext)
 
     const wrapperRef = useRef(null)
@@ -16,13 +27,14 @@ export const Layout = ({children}) => {
     useClickOutside(wrapperRef, setHamburgerToggle)
 
     useEffect(()=>{
-        document.getElementById('children').style.position = (showUser || showCart) ? 'fixed' : 'static'
+        document.getElementById('children').style.position = (showUser || showCart || showWishList) ? 'fixed' : 'static'
     },[showUser, showCart])
 
   return (
     <div id='layout' className='relative layout'>
         <Cart />
         <UserContainer />
+        <WishList />
         <div className="w-full h-16 lg:h-32 grid grid-cols-4 items-center bg-gray-100">
             <Link href={'/'}>
                 <h2 className='col-span-3 text-3xl lg:text-5xl flex-1 ml-8 font-bold text-gray-600 cursor-pointer'>r<span className='text-yellow-400'>ι</span>flεkt</h2>
@@ -51,8 +63,12 @@ export const Layout = ({children}) => {
                                 setShowUser(true)
                                 setProfile(currentUser ? 'profile' : 'sign-in')
                                 }}><AiOutlineUser size={24}/></div>
-                            <Link href={'/'}><a className='text-gray-800'><AiOutlineHeart className='cursor-pointer' size={24}/></a>
-                            </Link>
+                            <div onClick={()=>{
+                                setShowWishList(true)
+                            }} className='text-gray-800 relative'>
+                                <AiOutlineHeart className='cursor-pointer' size={24}/>
+                                <span className={`absolute rounded-full w-5 h-5 font-normal flex place-content-center text-[.8rem] bg-[#f02a34] -top-3 -right-3 text-primary-content ${wishList.length < 1 && 'hidden'}`}>{wishList.length}</span>
+                            </div>
                             <div className='relative text-black cursor-pointer' onClick={()=>{setShowCart(true)}}>
                                 <AiOutlineShoppingCart className='cursor-pointer' size={24}/>
                                 <span className={`absolute rounded-full w-5 h-5 font-normal flex place-content-center text-[.8rem] bg-[#f02a34] -top-3 -right-3 text-primary-content ${totalQty < 1 && 'hidden'}`}>{totalQty}</span>

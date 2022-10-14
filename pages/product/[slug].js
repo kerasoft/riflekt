@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { client, SanityImage } from '../../lib/client'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import Image from 'next/image'
 import Context from '../../context/stateContext'
+import toast from 'react-hot-toast'
 
 const ProductDetails = ({product}) => {
     const { name, image, details, tags, price } = product
-    const {qty, setQty, addItemsToCart, cartItems } = useContext(Context)
-    console.log(cartItems)
+    const {qty, setQty, addItemsToCart, wishList, setWishList } = useContext(Context)
+    // console.log(cartItems)
 
     useEffect(()=>{
         setQty(1)
@@ -14,11 +16,24 @@ const ProductDetails = ({product}) => {
 
     const nextImage = SanityImage(image[0])
 
+    let ifInWishList = wishList.find(item=>item._id === product._id)
+
     return (
         <div>
             <div className='flex flex-col m-10 gap-8 container mx-auto lg:flex-row px-6'>
-                <div className='lg:w-2/6'>
+                <div className='lg:w-2/6 relative'>
                     <Image {...nextImage} alt={name}/>
+                    <div onClick={()=>{
+                        if(ifInWishList){
+                            let updatedList = wishList.filter(item=>item._id !== product._id)
+                            setWishList(updatedList)
+                        }else{
+                            toast.success(`${product.name} is on wishlist`)
+                            setWishList([...wishList, {...product, nextImage: nextImage}])
+                        }
+                    }} className='absolute cursor-pointer z-5 top-5 right-5 bg-[#fefefe] rounded-full p-[5px]'>
+                        {ifInWishList ? <AiFillHeart className='text-[#f02a34]' size={32}/> : <AiOutlineHeart className='text-[#f02a34]' size={32}/> }
+                    </div>
                 </div>
                 <div className='flex justify-center flex-1'>
                     <div className='min-w-3/4'>
