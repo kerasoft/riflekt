@@ -6,10 +6,9 @@ import Context from '../context/stateContext'
 import { AuthContext } from '../context/authContext'
 import useClickOutside from '../hooks/useClickOutside'
 import { Cart, UserContainer } from '../components'
-import { Toaster } from 'react-hot-toast'
 
 export const Layout = ({children}) => {
-    const { hamburgerToggle, setHamburgerToggle, setShowCart, setShowUser, showUser, showCart } = useContext(Context)
+    const { hamburgerToggle, setHamburgerToggle, setShowCart, setShowUser, showUser, showCart, totalQty } = useContext(Context)
     const { currentUser, setProfile } = useContext(AuthContext)
 
     const wrapperRef = useRef(null)
@@ -22,7 +21,6 @@ export const Layout = ({children}) => {
 
   return (
     <div id='layout' className='relative layout'>
-        <Toaster />
         <Cart />
         <UserContainer />
         <div className="w-full h-16 lg:h-32 grid grid-cols-4 items-center bg-gray-100">
@@ -57,7 +55,7 @@ export const Layout = ({children}) => {
                             </Link>
                             <div className='relative text-black cursor-pointer' onClick={()=>{setShowCart(true)}}>
                                 <AiOutlineShoppingCart className='cursor-pointer' size={24}/>
-                                <span className='absolute rounded-full w-5 h-5 font-normal flex place-content-center text-[.8rem] bg-[#f02a34] -top-3 -right-3 text-primary-content'>4</span>
+                                <span className={`absolute rounded-full w-5 h-5 font-normal flex place-content-center text-[.8rem] bg-[#f02a34] -top-3 -right-3 text-primary-content ${totalQty < 1 && 'hidden'}`}>{totalQty}</span>
                             </div>
                         </div>
                     </div>

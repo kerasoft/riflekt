@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { client, SanityImage } from '../../lib/client'
 import Image from 'next/image'
 import Context from '../../context/stateContext'
@@ -6,14 +6,19 @@ import Context from '../../context/stateContext'
 const ProductDetails = ({product}) => {
     const { name, image, details, tags, price } = product
     const {qty, setQty, addItemsToCart, cartItems } = useContext(Context)
-    // console.log(product)
-
     console.log(cartItems)
+
+    useEffect(()=>{
+        setQty(1)
+    },[product.slug]) //eslint-disable-line
+
+    const nextImage = SanityImage(image[0])
+
     return (
         <div>
             <div className='flex flex-col m-10 gap-8 container mx-auto lg:flex-row px-6'>
                 <div className='lg:w-2/6'>
-                    <Image {...SanityImage(image[0])} alt={name}/>
+                    <Image {...nextImage} alt={name}/>
                 </div>
                 <div className='flex justify-center flex-1'>
                     <div className='min-w-3/4'>
@@ -37,7 +42,7 @@ const ProductDetails = ({product}) => {
                             <span onClick={()=>{setQty(qty + 1)}} className='cursor-pointer p-[.95rem] py-1 lg:p-2 lg:px-4 border-[1px] text-[green] border-gray-400'>+</span>
                         </div>
                         <div className='mt-8 flex flex-col sm:flex-row gap-5'>
-                            <button onClick={()=>addItemsToCart(product, qty)} className='border-[2px] border-black p-3 px-12 font-medium'>Add to cart</button>
+                            <button onClick={()=>addItemsToCart(product, qty, nextImage)} className='border-[2px] border-black p-3 px-12 font-medium'>Add to cart</button>
                             <button className='border-[2px] border-black text-primary-content bg-black p-3 px-12 font-medium'>Buy now</button>
                         </div>
                     </div>
