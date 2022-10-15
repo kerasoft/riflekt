@@ -1,4 +1,3 @@
-import { signOut } from 'firebase/auth'
 import React, { useContext } from 'react'
 import { AiOutlineUser } from 'react-icons/ai'
 import { AuthContext } from '../context/authContext'

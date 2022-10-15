@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { client, SanityImage } from '../../lib/client'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import Image from 'next/image'

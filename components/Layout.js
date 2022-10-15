@@ -28,7 +28,7 @@ export const Layout = ({children}) => {
 
     useEffect(()=>{
         document.getElementById('children').style.position = (showUser || showCart || showWishList) ? 'fixed' : 'static'
-    },[showUser, showCart])
+    },[showUser, showCart, showWishList]) //eslint-disable-line
 
   return (
     <div id='layout' className='relative layout'>
