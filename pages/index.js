@@ -1,4 +1,4 @@
-import { Hero, Products } from "../components";
+import { Products } from "../components";
 import { client } from "../lib/client";
 
 
