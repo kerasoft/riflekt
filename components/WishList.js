@@ -14,6 +14,7 @@ export const WishList = () => {
         showWishList,
         setShowWishList,
         setWishList,
+        addItemsToCart,
         } = useContext(Context)
 
     useClickOutside(wrapperRef, setShowWishList)
@@ -46,7 +47,9 @@ export const WishList = () => {
                     <div className='self-center'>
                       <p className='text-base sm:text-lg'>{item.name}</p>
                       <p className='text-[1.2rem] sm:text-[1.4rem]'>₹ {item.price}</p>
-                      <button className='bg-[#f02a34] px-4 py-2  mt-2 text-[#fefefe]'>Add to cart</button>
+                      <button onClick={()=>{
+                        addItemsToCart(item, 1, item.nextImage)
+                      }} className='bg-[#f02a34] px-4 py-2  mt-2 text-[#fefefe]'>Add to cart</button>
                     </div>
                       <div onClick={()=>{
                         let updatedList = wishList.filter((itm, idx)=>{
