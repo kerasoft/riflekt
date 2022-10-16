@@ -5,7 +5,7 @@ import { BsChevronCompactDown } from 'react-icons/bs'
 import Context from '../context/stateContext'
 import { AuthContext } from '../context/authContext'
 import useClickOutside from '../hooks/useClickOutside'
-import { Cart, UserContainer, WishList } from '../components'
+import { Cart, UserContainer, WishList, Footer } from '../components'
 
 export const Layout = ({children}) => {
     const { 
@@ -27,7 +27,7 @@ export const Layout = ({children}) => {
     useClickOutside(wrapperRef, setHamburgerToggle)
 
     useEffect(()=>{
-        document.getElementById('children').style.position = (showUser || showCart || showWishList) ? 'fixed' : 'static'
+        document.body.style.position = (showUser || showCart || showWishList) ? 'fixed' : 'static'
     },[showUser, showCart, showWishList]) //eslint-disable-line
 
   return (
@@ -37,7 +37,7 @@ export const Layout = ({children}) => {
         <WishList />
         <div className="w-full h-16 lg:h-32 grid grid-cols-4 items-center bg-gray-100">
             <Link href={'/'}>
-                <h2 className='col-span-3 text-3xl lg:text-5xl flex-1 ml-8 font-bold text-gray-600 cursor-pointer'>r<span className='text-yellow-400'>ι</span>flεkt</h2>
+                <h2 className='col-span-3 text-3xl lg:text-5xl flex-1 ml-8 font-bold text-gray-800 cursor-pointer'>r<span className='text-yellow-400'>ι</span>flεkt</h2>
             </Link>
             <div className='flex justify-end px-8'>
                 {/* <Link href={'/'}>
@@ -62,14 +62,14 @@ export const Layout = ({children}) => {
                             <div className='text-black cursor-pointer' onClick={()=>{
                                 setShowUser(true)
                                 setProfile(currentUser ? 'profile' : 'sign-in')
-                                }}><AiOutlineUser size={24}/></div>
+                                }}><AiOutlineUser size={24} fill={currentUser ? '#2a2': '#222'}/></div>
                             <div onClick={()=>{
                                 setShowWishList(true)
-                            }} className='text-gray-800 relative'>
+                            }} className='text-[#222] relative'>
                                 <AiOutlineHeart className='cursor-pointer' size={24}/>
                                 <span className={`absolute rounded-full w-5 h-5 font-normal flex place-content-center text-[.8rem] bg-[#f02a34] -top-3 -right-3 text-primary-content ${wishList.length < 1 && 'hidden'}`}>{wishList.length}</span>
                             </div>
-                            <div className='relative text-black cursor-pointer' onClick={()=>{setShowCart(true)}}>
+                            <div className='relative text-[#222] cursor-pointer' onClick={()=>{setShowCart(true)}}>
                                 <AiOutlineShoppingCart className='cursor-pointer' size={24}/>
                                 <span className={`absolute rounded-full w-5 h-5 font-normal flex place-content-center text-[.8rem] bg-[#f02a34] -top-3 -right-3 text-primary-content ${totalQty < 1 && 'hidden'}`}>{totalQty}</span>
                             </div>
@@ -85,6 +85,7 @@ export const Layout = ({children}) => {
         <div id='children'>
             {children}
         </div>
+        <Footer />
     </div>
   )
 }

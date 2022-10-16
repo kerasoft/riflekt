@@ -15,7 +15,7 @@ export const UserContainer = () => {
     })
 
   return (
-    <div className={`inset-0 bg-[#222a] z-10 ${showUser ? 'fixed' : 'hidden'}`}>
+    <div className={`inset-0 bg-[#000a] z-10 ${showUser ? 'fixed' : 'hidden'}`}>
         <div ref={wrapperRef} className='absolute w-full sm:w-[540px] right-0 bg-[#fefefe] top-0 bottom-0 shadow-md p-4 overflow-scroll'>
             <AiFillCloseCircle className='ml-auto cursor- mb-8' size={40} onClick={()=>{
                 setShowUser(false)

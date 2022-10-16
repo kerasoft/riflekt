@@ -19,7 +19,7 @@ const ProductDetails = ({product}) => {
     let ifInWishList = wishList.find(item=>item._id === product._id)
 
     return (
-        <div>
+        <div className='mb-12 sm:mb-24 lg:mb-32'>
             <div className='flex flex-col m-10 gap-8 container mx-auto lg:flex-row px-6'>
                 <div className='lg:w-2/6 relative'>
                     <Image {...nextImage} alt={name}/>
