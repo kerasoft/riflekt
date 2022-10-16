@@ -6,6 +6,8 @@ import { FiShoppingBag } from 'react-icons/fi'
 import Link from 'next/link'
 import Image from 'next/image'
 import { AiFillCloseCircle } from 'react-icons/ai'
+import getStripe from '../lib/getStripe'
+import toast from 'react-hot-toast'
 
 export const Cart = () => {
     const wrapperRef = useRef(null)
@@ -21,6 +23,25 @@ export const Cart = () => {
     } = useContext(Context)
 
     useClickOutside(wrapperRef, setShowCart)
+
+    const handleCheckOut = async () => {
+      const stripe = await getStripe()
+
+      const res = await fetch('/api/stripe', {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(cartItems)
+      })
+
+      if(res.statusCode === 500) return
+
+      const data = await res.json()
+
+      toast.loading('Redirecting...')
+      stripe.redirectToCheckout({sessionId: data.id})
+    }
 
   return (
     <div className={`inset-0 bg-[#222a] z-10 ${showCart ? 'fixed' : 'hidden'}`}>
@@ -108,7 +129,7 @@ export const Cart = () => {
               <p className='font-[400]'>Total Amount:</p>
               <p>₹ {totalPrice}</p>
             </div>
-            <button className='w-[80%] sm:w-10/12 block my-4 sm:my-4 mx-auto py-3 text-xl rounded-md bg-[#f02a34] text-[#fefefe]'>Pay Now</button>
+            <button onClick={handleCheckOut} className='w-[80%] sm:w-10/12 block my-4 sm:my-4 mx-auto py-3 text-xl rounded-md bg-[#f02a34] text-[#fefefe]'>Pay Now</button>
             </div>)}
           </div>
         </div>
