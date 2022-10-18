@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { AiOutlineUser } from 'react-icons/ai'
-import { AuthContext } from '../context/authContext'
+import Context from '../context/stateContext'
 
 export const Profile = () => {
-  const { currentUser, userSignOut } = useContext(AuthContext)
+  const { currentUser, userSignOut } = useContext(Context)
 
   const handleSignOut = () => {
     userSignOut()

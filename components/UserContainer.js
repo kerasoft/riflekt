@@ -1,14 +1,18 @@
 import React, { useContext, useRef } from 'react'
 import Context from '../context/stateContext'
-import { AuthContext } from '../context/authContext'
 import useClickOutside from '../hooks/useClickOutside'
 import { SignIn, SignUp, Profile } from '../components'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
 export const UserContainer = () => {
     const wrapperRef = useRef(null)
-    const { showUser, setShowUser } = useContext(Context)
-    const { currentUser, profile, setProfile } = useContext(AuthContext)
+    const { 
+      showUser,
+      setShowUser,
+      currentUser,
+      profile,
+      setProfile 
+    } = useContext(Context)
     useClickOutside(wrapperRef, ()=>{
         setShowUser(false)
         setProfile(currentUser ? 'profile' : 'sign-in')

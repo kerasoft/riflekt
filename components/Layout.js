@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
 import { BsChevronCompactDown } from 'react-icons/bs'
 import Context from '../context/stateContext'
-import { AuthContext } from '../context/authContext'
 import useClickOutside from '../hooks/useClickOutside'
 import { Cart, UserContainer, WishList, Footer } from '../components'
 
@@ -18,9 +17,10 @@ export const Layout = ({children}) => {
         totalQty, 
         setShowWishList, 
         showWishList,
-        wishList, 
+        wishList,
+        currentUser,
+        setProfile,
     } = useContext(Context)
-    const { currentUser, setProfile } = useContext(AuthContext)
 
     const wrapperRef = useRef(null)
 

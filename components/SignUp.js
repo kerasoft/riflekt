@@ -2,7 +2,7 @@ import React, { useRef, useContext, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { AiFillGoogleSquare, AiOutlineRightCircle } from 'react-icons/ai'
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
-import { AuthContext } from '../context/authContext'
+import Context  from '../context/stateContext'
 
 export const SignUp = ({setProfile}) => {
     const nameRef = useRef()
@@ -16,7 +16,7 @@ export const SignUp = ({setProfile}) => {
         password: /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$/, //(?=.*[!@#$%^&*])
     }
 
-    const { showPassword, setShowPassword, signUp, currentUser, googleSignUp } = useContext(AuthContext)
+    const { showPassword, setShowPassword, signUp, currentUser, googleSignUp } = useContext(Context)
 
     useEffect(()=>{
         currentUser?.displayName && setProfile('profile')

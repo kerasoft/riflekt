@@ -8,7 +8,6 @@ import toast from 'react-hot-toast'
 const ProductDetails = ({product}) => {
     const { name, image, details, tags, price } = product
     const {qty, setQty, addItemsToCart, wishList, setWishList } = useContext(Context)
-    // console.log(cartItems)
 
     useEffect(()=>{
         setQty(1)
