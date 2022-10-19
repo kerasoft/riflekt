@@ -23,13 +23,13 @@ export const Footer = () => {
                 <div className='text-[.82rem] font-normal text-gray-200 flex flex-col gap-2'>
                     <h3 className='mb-2 text-gray-400 text-[.85rem] fon-medium'>SERVICES</h3>
                     <Link href='/services#installation'>Intallation</Link>
-                    <Link href='/services#pick-up'>Pick Up</Link>
+                    <Link href='/services#pick-up'>Store Pickup</Link>
                 </div>
                 <div className='text-[.82rem] font-normal text-gray-200 flex flex-col gap-2'>
                     <h3 className='mb-2 text-gray-400 text-[.85rem] fon-medium'>POLICIES</h3>
-                    <Link href='/services#installation'>Privacy Policy</Link>
-                    <Link href='/services#pick-up'>Shipping Policy</Link>
-                    <Link href='/services#pick-up'>Cancellation & Refund</Link>
+                    <Link href='/privacy'>Privacy Policy</Link>
+                    <Link href='/terms'>Terms of service</Link>
+                    <Link href='/cancel'>cancellation & Refund</Link>
                 </div>
                 <div className='lg:col-span-4 order-first lg:order-last mb-4 sm:mb-0'>
                     <div className='flex gap-3 lg:justify-end'>
