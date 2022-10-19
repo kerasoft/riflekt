@@ -16,11 +16,11 @@ export default async function handler(req, res) {
                 shipping_address_collection: {
                     allowed_countries: ['IN'],
                 },
-                discounts: [
-                    {
-                        coupon: 'CnOlbanB'
-                    }
-                ],
+                // discounts: [
+                //     {
+                //         coupon: 'CnOlbanB'
+                //     }
+                // ],
                 shipping_options: [
                     {
                         shipping_rate: 'shr_1LtZsiSFnMEqcoMbKYYtpnXF'
