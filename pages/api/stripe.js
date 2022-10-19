@@ -23,7 +23,7 @@ export default async function handler(req, res) {
                 // ],
                 shipping_options: [
                     {
-                        shipping_rate: 'shr_1LtZsiSFnMEqcoMbKYYtpnXF'
+                        shipping_rate: 'shr_1LugtESFnMEqcoMb2bCXr8iQ'
                     }
                 ],
                 phone_number_collection: {
