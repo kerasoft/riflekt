@@ -10,7 +10,7 @@ export const Product = ({item: {name, price, image, slug}}) => {
           {/* <img src={urlFor(image && image[0])} /> */}
           <Image {...SanityImage(image[0])} alt={name} />
           <h2>{name}</h2>
-          <p>Price: {price}</p>
+          <p>Price: ₹ {price}.00</p>
       </div>
     </Link>
   )

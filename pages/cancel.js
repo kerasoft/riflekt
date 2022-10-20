@@ -1,6 +1,6 @@
 import React from 'react'
 
-const cancel = () => {
+const Cancel = () => {
   return (
     <div className='px-8 container mx-auto py-12'>
         <h1 className='text-3xl font-semibold'>Cancellation and Refund</h1>
@@ -15,4 +15,4 @@ const cancel = () => {
   )
 }
 
-export default cancel
+export default Cancel

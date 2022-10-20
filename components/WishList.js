@@ -21,7 +21,7 @@ export const WishList = () => {
   return (
     <div className={`inset-0 bg-[#222a] z-10 ${showWishList ? 'fixed' : 'hidden'}`}>
         <div ref={wrapperRef} className='absolute w-full sm:w-[540px] right-0 bg-[#fefefe] top-0 bottom-0 shadow-md px-1 sm:px-4 overflow-scroll'>
-            <div onClick={()=>{setShowWishList(false)}} className='text-[1.2rem] inline-flex items-center gap-2 cursor-pointer mt-5'>
+            <div onClick={()=>{setShowWishList(false)}} className='text-[1.15rem] sm:text-[1.2rem] inline-flex items-center gap-2 cursor-pointer mt-5'>
                 <BsChevronLeft size={22} fill='#f02a34'/>
                 Your Wish List
                 <span className='text-[#292]'>[ {wishList.length} ]</span>
@@ -29,9 +29,9 @@ export const WishList = () => {
 
             <div className='flex flex-col min-h-[84vh]'>
                 {wishList.length < 1 && (<div className='flex flex-col place-items-center mt-12 lg:mt-24'>
-                <AiOutlineHeart className='text-[6rem] lg:text-[7.5rem] text-[#f02a34]' />
-                <p className='text-[1.4rem] lg:text-2xl mt-4'>Wishlist is empty</p>
-                <Link href='/'><a onClick={()=>{setShowWishList(false)}} className='mt-8 text-[#fefefe] px-10 py-3 text-[1.1rem] lg:text-[1.2rem] bg-[#f02a34] font-[500] rounded-md'>Window shop</a></Link>
+                <AiOutlineHeart className='text-[5rem] sm:text-[7rem] text-[#f02a34]' />
+                <p className='text-[1.3rem] sm:text-2xl mt-4'>Wishlist is empty</p>
+                <Link href='/'><a onClick={()=>{setShowWishList(false)}} className='mt-8 text-[#fefefe] px-10 py-3 text-[1.1rem] sm:text-[1.2rem] bg-[#f02a34] font-[500] rounded-md'>Window shop</a></Link>
             </div>)}
 
 
@@ -45,11 +45,11 @@ export const WishList = () => {
                       </div>
                     </Link>
                     <div className='self-center'>
-                      <p className='text-base sm:text-lg'>{item.name}</p>
-                      <p className='text-[1.2rem] sm:text-[1.4rem]'>₹ {item.price}</p>
+                      <p className='text-[.85rem] sm:text-lg'>{item.name}</p>
+                      <p className='text-[1.1rem] sm:text-[1.4rem]'>₹ {item.price}</p>
                       <button onClick={()=>{
                         addItemsToCart(item, 1, item.nextImage)
-                      }} className='bg-[#f02a34] px-4 py-2  mt-2 text-[#fefefe]'>Add to cart</button>
+                      }} className='text-[.9rem] sm:text-base bg-[#f02a34] px-4 py-2  mt-2 text-[#fefefe]'>Add to cart</button>
                     </div>
                       <div onClick={()=>{
                         let updatedList = wishList.filter((itm, idx)=>{

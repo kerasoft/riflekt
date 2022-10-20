@@ -1,37 +1,51 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { client, SanityImage } from '../../lib/client'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillHeart, AiFillLeftSquare, AiFillRightSquare, AiOutlineHeart } from 'react-icons/ai'
 import Image from 'next/image'
 import Context from '../../context/stateContext'
 import toast from 'react-hot-toast'
 
 const ProductDetails = ({product}) => {
+    const [index, setIndex] = useState(0)
     const { name, image, details, tags, price } = product
-    const {qty, setQty, addItemsToCart, wishList, setWishList } = useContext(Context)
+    const {qty, setQty, addItemsToCart, wishList, setWishList, setShowCart } = useContext(Context)
 
     useEffect(()=>{
         setQty(1)
     },[product.slug]) //eslint-disable-line
 
-    const nextImage = SanityImage(image[0])
+    const nextImageArr = image.map(img=>SanityImage(img))
 
     let ifInWishList = wishList.find(item=>item._id === product._id)
 
     return (
         <div className='mb-12 sm:mb-24 lg:mb-32'>
             <div className='flex flex-col m-10 gap-8 container mx-auto lg:flex-row px-6'>
-                <div className='lg:w-2/6 relative'>
-                    <Image {...nextImage} alt={name}/>
+                <div className='lg:w-2/6 relative h-fit'>
+                    <Image {...nextImageArr[index]} alt={name}/>
                     <div onClick={()=>{
                         if(ifInWishList){
                             let updatedList = wishList.filter(item=>item._id !== product._id)
                             setWishList(updatedList)
                         }else{
                             toast.success(`${product.name} is on wishlist`)
-                            setWishList([...wishList, {...product, nextImage: nextImage}])
+                            setWishList([...wishList, {...product, nextImage: nextImageArr[0]}])
                         }
                     }} className='absolute cursor-pointer z-5 top-5 right-5 bg-[#fefefe] rounded-full p-[5px]'>
                         {ifInWishList ? <AiFillHeart className='text-[#f02a34]' size={32}/> : <AiOutlineHeart className='text-[#f02a34]' size={32}/> }
+                    </div>
+                    <div className='flex md:hidden justify-center gap-4 mt-4 w-full absolute bottom-2 sm:bottom-4'>
+                        <AiFillLeftSquare size={40} fill='#001' onClick={() => {
+                            if(index > 0)setIndex(index-1)
+                        }}/>
+                        <AiFillRightSquare size={40} fill='#001' onClick={()=>{
+                            if(index < (image.length-1))setIndex(index+1)
+                        }}/>
+                    </div>
+                    <div className='hidden md:flex justify-center gap-5 p-2'>
+                        {image.map((img,i)=>(
+                            <Image className='rounded-md' key={i}{...SanityImage(img)} height={90} width={90} alt='' onMouseOver={()=>setIndex(i)}/>
+                        ))}
                     </div>
                 </div>
                 <div className='flex justify-center flex-1'>
@@ -56,8 +70,11 @@ const ProductDetails = ({product}) => {
                             <span onClick={()=>{setQty(qty + 1)}} className='cursor-pointer p-[.95rem] py-1 lg:p-2 lg:px-4 border-[1px] text-[green] border-gray-400'>+</span>
                         </div>
                         <div className='mt-8 flex flex-col sm:flex-row gap-5'>
-                            <button onClick={()=>addItemsToCart(product, qty, nextImage)} className='border-[2px] border-black p-3 px-12 font-medium'>Add to cart</button>
-                            <button className='border-[2px] border-black text-primary-content bg-black p-3 px-12 font-medium'>Buy now</button>
+                            <button onClick={()=>addItemsToCart(product, qty, nextImageArr[0])} className='border-[2px] border-black p-3 px-12 font-medium'>Add to cart</button>
+                            <button onClick={()=>{
+                                addItemsToCart(product, qty, nextImageArr[0])
+                                setShowCart(true)
+                            }} className='border-[2px] border-black text-primary-content bg-black p-3 px-12 font-medium'>Buy now</button>
                         </div>
                     </div>
                 </div>

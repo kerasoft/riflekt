@@ -1,6 +1,6 @@
 import React from 'react'
 
-const terms = () => {
+const Terms = () => {
   return (
     <div className='px-8 container mx-auto py-12'>
         <h1 className='text-2xl sm:text-3xl font-semibold'>Terms and Conditions</h1>
@@ -97,4 +97,4 @@ const terms = () => {
   )
 }
 
-export default terms
+export default Terms
