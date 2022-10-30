@@ -1,3 +1,5 @@
+import { Category } from './Category'
+
 export { Layout } from './Layout'
 export { Cart } from './Cart'
 export { Products } from './Products'
@@ -8,3 +10,4 @@ export { SignUp } from './SignUp'
 export { Profile } from './Profile'
 export { WishList } from './WishList'
 export { Footer } from './Footer'
+export { Category } from './Category'

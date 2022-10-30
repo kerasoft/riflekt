@@ -34,9 +34,9 @@ export const Footer = () => {
                 <div className='lg:col-span-4 order-first lg:order-last mb-4 sm:mb-0'>
                     <div className='flex gap-3 lg:justify-end'>
                         <Link className='' href={'/'}>
-                            <h2 className='text-5xl font-bold text-slate-900 bg-[#fefefe] cursor-pointer w-10 h-10 border-[8px] border-warning'>r</h2>
+                            <h2 className='text-5xl font-bold text-slate-900 bg-[#fefefe] cursor-pointer w-10 h-10 border-[8px] border-rose-600'>X</h2>
                         </Link>
-                        <p className='self-end -mb-1 text-[1.2rem] text-gray-400'>Riflekt Mirrors Pvt. Ltd.</p>
+                        <p className='self-end -mb-1 text-[1.2rem] text-gray-400'>Xmoto Motoparts Pvt. Ltd.</p>
                     </div>
                     <div className='hidden sm:flex w-full lg:justify-end mt-16'>
                         <div className='w-[320px] h-[100px]'>
@@ -48,7 +48,7 @@ export const Footer = () => {
             <div className='sm:hidden flex w-full lg:justify-end mt-10 px-12'>
                 <Image className='' src={StripeImg} alt='stripe logo' />
             </div>
-            <small className='block bg-slate-900 pt-2 text-center sm:text-start sm:pl-2 text-slate-500'>2022 &copy; Riflekt Pvt. Ltd. All rights reserved</small>
+            <small className='block bg-slate-900 pt-2 text-center sm:text-start sm:pl-2 text-slate-500'>2022 &copy; Xmoto Pvt. Ltd. All rights reserved</small>
         </div>
     </React.Fragment>
   )

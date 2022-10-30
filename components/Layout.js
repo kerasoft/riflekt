@@ -37,7 +37,7 @@ export const Layout = ({children}) => {
         <WishList />
         <div className="w-full h-16 lg:h-32 grid grid-cols-4 items-center bg-gray-100">
             <Link href={'/'}>
-                <h2 className='col-span-3 text-3xl lg:text-5xl flex-1 ml-8 font-bold text-gray-800 cursor-pointer'>r<span className='text-yellow-400'>ι</span>flεkt</h2>
+                <h2 className='col-span-3 text-3xl lg:text-5xl flex-1 ml-8 font-bold text-gray-800 cursor-pointer'>X<span className='text-rose-600'>Moto</span></h2>
             </Link>
             <div className='flex justify-end px-8'>
                 {/* <Link href={'/'}>

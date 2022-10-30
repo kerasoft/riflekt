@@ -6,11 +6,11 @@ import Link from 'next/link'
 export const Product = ({item: {name, price, image, slug}}) => {
   return (
     <Link href={`/product/${slug.current}`}>
-      <div className='p-4'>
+      <div className='p-4 cursor-pointer'>
           {/* <img src={urlFor(image && image[0])} /> */}
           <Image {...SanityImage(image[0])} alt={name} />
-          <h2>{name}</h2>
-          <p>Price: ₹ {price}.00</p>
+          <h2 className='text-slate-600'>{name}</h2>
+          <p className='text-rose-700 text-lg'>Price: &nbsp;₹{price}.00</p>
       </div>
     </Link>
   )

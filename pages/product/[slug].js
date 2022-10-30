@@ -58,9 +58,10 @@ const ProductDetails = ({product}) => {
                             ))}
                         </div>
                         <div className='mt-12 text-[.95rem]'>
-                            <p className='mb-2'>Customize size</p>
-                            <input className='rounded-md w-24 p-2 py-3 mr-4 border-[2px] placeholder:text-gray-300 border-gray-400' placeholder='Width(in)'/>
-                            <input className='rounded-md w-24 p-2 py-3 border-[2px] placeholder:text-gray-300 border-gray-400' placeholder='Height(in)'/>
+                            <p className='mb-2'>Year of make</p>
+                            <input type='number' min={1985} max={2016 }className='rounded-md w-24 p-2 py-3 mr-4 border-[2px] placeholder:text-gray-300 border-gray-400' placeholder='1985' required/>
+                            <span className='text-rose-500 text-xs sm:text-sm block md:inline-block mt-2 sm:mt-0'>** if not selected, default year will be captured.</span>
+                            {/* <input className='rounded-md w-24 p-2 py-3 border-[2px] placeholder:text-gray-300 border-gray-400' placeholder='Height(in)'/> */}
                         </div>
                         <p className='mt-12 text-3xl md:text-[2rem] lg:text-4xl font-bold text-gray-800'>₹ {price}</p>
 
@@ -84,7 +85,7 @@ const ProductDetails = ({product}) => {
 }
 
 export const getStaticPaths = async () => {
-    const query = `*[_type == 'product']{
+    const query = `*[_type == 'part']{
         slug{
             current
         }
@@ -103,7 +104,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({params:{slug}}) => {
-    const query = `*[_type == 'product' && slug.current == '${slug}']`
+    const query = `*[_type == 'part' && slug.current == '${slug}']`
     const product = await client.fetch(query)
 
     return {
